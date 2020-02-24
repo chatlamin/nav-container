@@ -21,6 +21,7 @@ services:
       - PGDATABASE=nav
       - PGUSER=nav
       - PGPORT=5432
+      - PGPASSWORD=root_password
       - CARBONHOST=carbon-cache
       - CARBONPORT=2003
       - GRAPHITEWEB=http://graphite-web/
@@ -34,7 +35,10 @@ services:
     volumes:
       - postgres:/var/lib/postgresql/data:Z
     restart: always
-
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=root_password
   carbon-cache:
     build: ./carbon-cache
     volumes:
@@ -47,7 +51,7 @@ services:
     # ports:
     #   - "8000:80"
     environment:
-      - TIME_ZONE=Europe/Oslo
+      - TIME_ZONE=Europe/Moscow
       - CARBONLINK_HOSTS=carbon-cache:7002
     volumes:
       - whisper:/var/lib/graphite/storage/whisper:z
