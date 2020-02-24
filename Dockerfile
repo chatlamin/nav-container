@@ -32,7 +32,7 @@ RUN mkdir /.cache && chmod 777 /.cache
 RUN mkdir /source
 WORKDIR /source
 ARG NAV_VERSION
-RUN git clone https://github.com/Uninett/nav.git nav --branch ${NAV_VERSION} --depth 1
+RUN git clone https://github.com/chatlamin/nav
 RUN mkdir -p .wheels
 RUN pip3 wheel -w ./.wheels/ -r nav/requirements.txt
 RUN pip3 install --root="/source/.build" ./nav
