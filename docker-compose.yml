@@ -48,8 +48,8 @@ services:
   graphite-web:
     build: ./graphite-web
     # We don't really want this to be public, since there is no authentication
-    # ports:
-    #   - "8000:80"
+    ports:
+      - "8000:80"
     environment:
       - TIME_ZONE=Europe/Moscow
       - CARBONLINK_HOSTS=carbon-cache:7002
